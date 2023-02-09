@@ -6,6 +6,7 @@ const app = Vue.createApp({
       currentRound: 0,
       winner: null,
       logMessages: [],
+      specialAttackCounter: 0,
     };
   },
   computed: {
@@ -22,7 +23,7 @@ const app = Vue.createApp({
       return { width: this.playerHealth + "%" };
     },
     mayUseSpecialAttack() {
-      return this.currentRound % 3 === 0;
+      return this.specialAttackCounter >= 3;
     },
   },
   watch: {
@@ -59,6 +60,7 @@ const app = Vue.createApp({
       this.addLogMessage("player", "attack", attackValue);
       this.attackPlayer();
       this.currentRound += 1;
+      this.specialAttackCounter += 1;
     },
     attackPlayer() {
       const attackValue = getRandomValue(8, 15);
@@ -71,6 +73,7 @@ const app = Vue.createApp({
       this.addLogMessage("player", "special-attack", attackValue);
       this.attackPlayer();
       this.currentRound += 1;
+      this.specialAttackCounter = 0;
     },
     healPlayer() {
       this.currentRound += 1;
