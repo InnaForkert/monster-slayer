@@ -3,7 +3,7 @@
 }
 
 html {
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 body {
@@ -23,6 +23,9 @@ section {
   width: 90%;
   max-width: 40rem;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .healthbar {
@@ -45,11 +48,14 @@ section {
   margin: 1rem auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 12px;
+  max-width: 300px;
 }
 
 #monster h2,
 #player h2 {
   margin: 0.25rem;
+  display: block;
+  margin-top: auto;
 }
 
 #controls {
@@ -116,4 +122,36 @@ button:disabled {
 
 .log--heal {
   color: green;
+}
+
+.monster {
+  display: block;
+  max-width: 250px;
+  max-height: 250px;
+  margin-bottom: 15px;
+}
+
+.player {
+  display: block;
+  width: 150px;
+  max-height: 250px;
+}
+
+.fighters {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+}
+
+body {
+  text-align: center;
+}
+
+.heroes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fighters .container {
+  width: 200px;
 }

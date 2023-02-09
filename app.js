@@ -1,23 +1,47 @@
 const app = Vue.createApp({
   data() {
     return {
+      gameStarted: false,
       playerHealth: 100,
       monsterHealth: 100,
       currentRound: 0,
       winner: null,
       logMessages: [],
       specialAttackCounter: 0,
+      level: 1,
+      monsters: [
+        {
+          img: "./img/1.jpg",
+          name: "Stinky",
+        },
+        {
+          img: "/img/2.png",
+          name: "Saddy",
+        },
+        {
+          img: "/img/3.png",
+          name: "Worky",
+        },
+        {
+          img: "/img/4.png",
+          name: "Cringy",
+        },
+        {
+          img: "/img/5.png",
+          name: "Godslayer",
+        },
+      ],
     };
   },
   computed: {
     monsterBarStyles() {
-      if (this.monsterHealth < 0) {
+      if (this.monsterHealth <= 0) {
         return { width: "0%" };
       }
       return { width: this.monsterHealth + "%" };
     },
     playerBarStyles() {
-      if (this.playerHealth < 0) {
+      if (this.playerHealth <= 0) {
         return { width: "0%" };
       }
       return { width: this.playerHealth + "%" };
@@ -29,17 +53,22 @@ const app = Vue.createApp({
   watch: {
     playerHealth(value) {
       if (value <= 0) {
-        if (this.monsterHealth <= 0) {
-          this.winner = "draw";
-        } else {
-          this.winner = "monster";
-        }
+        alert("You were defeated!");
+        this.level = 1;
+        this.specialAttackCounter = 0;
+        this.winner = "monster";
       }
     },
     monsterHealth(value) {
       if (value <= 0) {
-        if (this.playerHealth <= 0) {
-          this.winner = "draw";
+        if (this.level < 5) {
+          this.level += 1;
+          setTimeout(
+            () => alert("Victory! Next level will not be that easy!"),
+            0
+          );
+          this.playerHealth = 100;
+          this.monsterHealth = 100;
         } else {
           this.winner = "player";
         }
@@ -77,6 +106,7 @@ const app = Vue.createApp({
     },
     healPlayer() {
       this.currentRound += 1;
+      this.specialAttackCounter += 1;
       const healValue = getRandomValue(8, 20);
       if (this.playerHealth + healValue > 100) {
         this.playerHealth = 100;
