@@ -1,8 +1,5 @@
 * {
   box-sizing: border-box;
-}
-
-html {
   font-family: "Jost", sans-serif;
 }
 
@@ -48,7 +45,6 @@ section {
   margin: 1rem auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 12px;
-  max-width: 300px;
 }
 
 #monster h2,
@@ -135,6 +131,7 @@ button:disabled {
   display: block;
   width: 150px;
   max-height: 250px;
+  cursor: pointer;
 }
 
 .fighters {
@@ -153,5 +150,29 @@ body {
 }
 
 .fighters .container {
-  width: 200px;
+  max-width: 350px;
+}
+
+.name-input {
+  display: inline-block;
+  width: 250px;
+  padding: 5px 15px;
+  border-radius: 15px;
+  margin-left: 15px;
+  outline: none;
+  border: 1px solid gray;
+  font-size: 18px;
+
+  transition: border 250ms, box-shadow 250ms;
+}
+
+.name-input:focus {
+  box-shadow: inset 1px 1px 2px black;
+  border-color: transparent;
+}
+
+.name-input-label {
+  display: inline-block;
+  padding: 5px;
+  font-size: 18px;
 }

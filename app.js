@@ -1,7 +1,6 @@
 const app = Vue.createApp({
   data() {
     return {
-      gameStarted: false,
       playerHealth: 100,
       monsterHealth: 100,
       currentRound: 0,
@@ -9,6 +8,14 @@ const app = Vue.createApp({
       logMessages: [],
       specialAttackCounter: 0,
       level: 1,
+      player: { name: "Player", img: "" },
+      players: [
+        { img: "./img/player/1.png" },
+        { img: "./img/player/2.png" },
+        { img: "./img/player/3.png" },
+        { img: "./img/player/4.png" },
+        { img: "./img/player/5.png" },
+      ],
       monsters: [
         {
           img: "./img/1.jpg",
@@ -49,6 +56,9 @@ const app = Vue.createApp({
     mayUseSpecialAttack() {
       return this.specialAttackCounter >= 3;
     },
+    gameStarted() {
+      return !!this.player.img;
+    },
   },
   watch: {
     playerHealth(value) {
@@ -76,7 +86,11 @@ const app = Vue.createApp({
     },
   },
   methods: {
+    choosePlayer(idx) {
+      this.player.img = this.players[idx].img;
+    },
     startGame() {
+      this.player.img = null;
       this.playerHealth = 100;
       this.monsterHealth = 100;
       this.winner = null;
