@@ -22,19 +22,19 @@ const app = Vue.createApp({
           name: "Stinky",
         },
         {
-          img: "/img/2.png",
+          img: "./img/2.png",
           name: "Saddy",
         },
         {
-          img: "/img/3.png",
+          img: "./img/3.png",
           name: "Worky",
         },
         {
-          img: "/img/4.png",
+          img: "./img/4.png",
           name: "Cringy",
         },
         {
-          img: "/img/5.png",
+          img: "./img/5.png",
           name: "Godslayer",
         },
       ],
